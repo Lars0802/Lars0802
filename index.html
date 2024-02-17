@@ -6,10 +6,55 @@
 
     <body>
         <div class="wrapper">
-            <div class="loader-box">
+            <!-- <div class="loader-box">
                 <div class="loader"></div>
                 <div class="loader-text">Loading...</div>
+            </div> -->
+            <h2>Counter Strike drop calculator</h2>
+            <div class="xp-input">
+                <input
+                    class="xp-input-field"
+                    type="text"
+                    id="xp-input"
+                    placeholder="enter current xp ..."
+                />
+                <br />
+                <button class="btn-input" onclick="getXP()">Submit</button>
             </div>
+            <p class="text-output" id="text-output-rounds"></p>
+            <p class="text-output" id="text-output-mm"></p>
         </div>
     </body>
+    <script>
+        function getXP() {
+            let currentXp = parseInt(document.getElementById("xp-input").value);
+            console.log(currentXp);
+            let roundsToWin = 0;
+            let boost4x = 3500;
+            let boost2x = 1500;
+            if (!Number.isInteger(currentXp)) {
+                console.log(Number.isInteger(currentXp));
+                console.log(typeof currentXp);
+                alert("Please only enter integers.");
+                window.location.reload;
+            }
+            while (currentXp < 5000) {
+                if (boost4x > 0) {
+                    currentXp += 120;
+                } else if (boost2x > 0) {
+                    currentXp += 60;
+                }
+                roundsToWin += 1;
+            }
+            document.getElementById(
+                "text-output-rounds"
+            ).innerHTML = `Rounds needed: <b>${roundsToWin}</b>`;
+            document.getElementById(
+                "text-output-mm"
+            ).innerHTML = `That is <b>${Math.floor(
+                roundsToWin / 13
+            )}</b> MM wins and <b>${roundsToWin % 13}</b> additional rounds.`;
+            return 0;
+        }
+    </script>
 </html>
