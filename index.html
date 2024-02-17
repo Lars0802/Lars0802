@@ -80,8 +80,10 @@
             while (currentXp < 5000) {
                 if (boost4x > 0) {
                     currentXp += 120;
+                    boost4x -= 90;
                 } else if (boost2x > 0) {
                     currentXp += 60;
+                    boost2x -= 30;
                 }
                 roundsToWin += 1;
             }
